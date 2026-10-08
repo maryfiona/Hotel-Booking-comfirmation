@@ -1,0 +1,726 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(41, 100%, 93%);
+  overflow: hidden;
+  font-size: 14px;
+  position: relative;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  border-right-width: 2px;
+  border-right-style: solid;
+  border-right-color: rgb(234, 231, 231);
+  height: 100%;
+  position: fixed;
+  width: 280px;
+}
+.sideBtn {
+  display: none;
+}
+
+.imgLogo {
+  padding: 4px;
+  margin: 5px;
+}
+
+.listing {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: "Fraunces", serif;
+  font-weight: 400;
+  padding-left: 20px;
+  position: relative;
+  margin-top: 10px;
+  padding-top: 14px;
+}
+.listing::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 25px;
+  right: 25px;
+  border-top: 1.5px solid rgb(220, 217, 217);
+}
+
+.listing a {
+  gap: 10px;
+  padding: 8px;
+  align-items: center;
+  display: flex;
+}
+.listing a img {
+  width: 14px;
+  height: 14px;
+  padding-left: 0;
+}
+.navLink {
+  background-color: transparent;
+  border-radius: 50px;
+  position: relative;
+  padding-right: 40px;
+  width: 100%;
+}
+.navLink.active {
+  background-color: white;
+}
+.navLink:first-child.active::after {
+  background-image: url(/assets/dangerIcon.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  content: "";
+  width: 20px;
+  height: 20px;
+  right: 10px;
+}
+.weather {
+  padding: 25px;
+}
+
+.light {
+  background: hsl(45, 100%, 73%);
+  position: relative;
+  border-radius: 20px;
+  padding: 20px;
+  height: 120px;
+  box-sizing: border-box;
+  padding: 15px 20px;
+  font-family: "DM mono", serif;
+}
+.light span {
+  display: block;
+}
+
+.light span:first-of-type {
+  font-size: 14px;
+}
+
+.light span:nth-of-type(2) {
+  font-size: 35px;
+  margin: 8px 0;
+  font-weight: 400;
+}
+.light span:last-of-type {
+  font-size: 14px;
+}
+
+.light img {
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  width: 55px;
+  height: 55px;
+  transform: translateY(-50%);
+}
+
+/*footer*/
+
+.footer {
+  font-size: 15px;
+  line-height: 1.2;
+  font-family: "Fraunces", sans-serif;
+  opacity: 0.7;
+  border-top: 1.5px solid rgb(220, 217, 217);
+  margin-top: 20px;
+  padding-top: 14px;
+}
+.footer p {
+  margin: 12px 0;
+}
+
+/* main-section */
+.main-section {
+  height: 100%;
+  width: calc(100% - 290px);
+  position: relative;
+  left: 280px;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.main-section-col {
+  display: flex;
+}
+
+.main-section .main-top {
+  opacity: 0.7;
+  word-spacing: 5px;
+}
+.main-section .main-span .first-word {
+  font-family: "Fraunces", sans-serif;
+}
+.main-section .main-span .last-word {
+  color: hsl(15, 69%, 37%);
+  font-family: "Fraunces", sans-serif;
+  font-style: italic;
+}
+.main-section-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.main-section-right button {
+  border-radius: 999px;
+  border: none;
+  min-height: 40px;
+  padding: 0 18px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+}
+.main-section-right .print-button {
+  color: black;
+  background-color: hsl(41, 100%, 93%);
+  border: 1px solid rgb(164, 162, 162);
+}
+.main-section-right .add-calendar-button {
+  background-color: black;
+  color: white;
+}
+/*card-section*/
+
+.main-card {
+  width: 80%;
+  min-width: 299px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 40px auto;
+  isolation: isolate;
+}
+
+.main-card .main-reciept {
+  background-color: rgb(246, 243, 234);
+  width: 350px;
+  height: 350px;
+  padding: 25px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: -1;
+  border-radius: 25px;
+  transform: rotate(-3deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.main-reciept:hover {
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px) rotate(-3deg) scale(1.02);
+}
+
+.main-reciept .main-column-one {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+.main-reciept .column-section-one p {
+  font-size: 12px;
+  margin: 0 0 7px;
+  opacity: 0.7;
+}
+.main-reciept .column-section-one h3 {
+  font-size: 19px;
+  font-family: Georgia, sans-serif;
+  margin: 0;
+}
+
+.main-reciept .column-section-two {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+.column-section-two p {
+  font-size: 7px;
+  margin: 0;
+  letter-spacing: 1px;
+}
+.main-column-two {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 0 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgb(210, 205, 205);
+}
+.main-column-two .check-in p {
+  font-size: 9px;
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin: 0 0 4px;
+  opacity: 0.7;
+}
+.main-column-two .check-out p {
+  font-size: 9px;
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin: 0 0 4px;
+  opacity: 0.7;
+}
+
+.main-column-two h2 {
+  font-size: 25px;
+  margin: 0 0 3px;
+  font-family: "DM Sans", sans-serif;
+}
+.main-column-two span {
+  font-size: 13px;
+  font-family: "Fraunces", sans-serif;
+  opacity: 0.7;
+}
+
+.main-column-three {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  padding-top: 15px;
+}
+.main-column-three .stay-here {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 9px;
+}
+.stay-here p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.stay-here span {
+  font-size: 10px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.stay-here .tourist-tax {
+  opacity: 0.8;
+  font-size: 12px;
+}
+.stay-here .tourist-no {
+  opacity: 0.8;
+  font-size: 10px;
+}
+
+.total-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 12px;
+}
+
+.total-section p {
+  font-size: 10px;
+  margin: 0;
+  opacity: 0.8;
+  letter-spacing: 1.5px;
+}
+.total-section h2 {
+  font-size: 20px;
+  margin: 0;
+  font-family: "Fraunces" sans-serif;
+  font-style: oblique;
+}
+
+.bottom-card {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 12px;
+}
+.barcode {
+  font-size: 18px;
+}
+
+.main-card .welcome-back {
+  background: linear-gradient(135deg, #d85b22, #9f3218);
+  width: 350px;
+  height: 350px;
+  box-sizing: border-box;
+  position: relative;
+  padding: 25px;
+  border-radius: 20px;
+  transform: rotate(4deg);
+  color: hsl(41, 100%, 93%);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+.welcome-back:hover {
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+  transform: translatex(-8px) rotate(3deg) scale(1.02);
+}
+.welcome-content {
+  position: relative;
+  margin-top: 10px;
+}
+.welcome-back .dashline {
+  opacity: 0.1;
+  width: full;
+  border-bottom: dashed;
+}
+.welcome-back .welcome-content p {
+  line-height: 3;
+  font-size: 13px;
+}
+
+.welcome-back .welcome-content .welcome-sun {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+.welcome-content h2 {
+  margin-top: 45px;
+  font-family: "DM Sans", sans-serif;
+  font-style: italic;
+  color: hsl(44, 100%, 50%);
+}
+.welcome-content h1 {
+  font-family: "Fraunces", sans-serif;
+  font-size: 35px;
+  font-style: italic;
+  margin: 5px;
+}
+.welcome-content .welcome-message {
+  display: block;
+  margin-top: 20px;
+  font-family: "Fraunces", sans-serif;
+}
+.welcome-bottom {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+.welcome-bottom p {
+  margin: 0 0 4px;
+  font-size: 9px;
+}
+/*bottom-of-card*/
+.hover-to-fan {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 7px;
+  margin-bottom: 6px;
+}
+.hover-to-fan p {
+  opacity: 0.6;
+  font-family: "Fraunces", sans-serif;
+  font-size: 10px;
+}
+
+
+
+/*three-cards*/
+
+
+.card{
+ display: flex;
+ gap: 28px;
+ max-width: 1200px;
+ margin: 40px auto 0;
+     
+}
+.card .card-arrival{
+ background-color:  rgb(246, 243, 234);
+  border: 1px solid #b8b5b2;
+  border-radius: 18px;
+  padding: 28px 22px;
+  flex: 1;
+  min-height: 290px;
+   box-shadow: 0 20px 35px rgba(105, 99, 99, 0.2);
+
+}
+.card .card-arrival:hover{
+           transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+    transform:translateY(6px);
+}
+.card .card-arrival img{
+  background-color: rgb(167, 11, 11);
+}
+.card .arrival, .arrival-no{
+color: rgb(167, 11, 11);
+}
+.card  .saturday{
+font-size: 12px;
+line-height: 1.5;
+opacity: 0.7;
+}
+.card .card-arrival .arrival-text{
+font-size: 14px;
+line-height: 1.5;
+margin-top: 19px;
+
+}
+.card .card-wifi{
+  background-color: rgb(246, 243, 234);
+  border: 1px solid #b8b5b2;
+  border-radius: 18px;
+  padding: 28px 22px;
+  flex: 1;
+  min-height: 290px;
+   box-shadow: 0 20px 35px rgba(105, 99, 99, 0.2);
+   
+}
+.card .card-wifi:hover{
+      transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+    transform:translateY(6px);
+}
+.card .card-wifi img{
+  background-color: rgb(45, 7, 151);
+}
+.card .wifi, .wifi-no{
+   color: rgb(45, 7, 151);
+}
+.card .card-wifi > p{
+opacity: 0.7;
+  font-size: 12px;
+  margin-bottom: 18px;
+}
+.card .wifi-info > div{
+  display: flex;
+  align-items: center;
+  background-color: #f0eeea;
+  padding: 10px 12px;
+  margin-bottom: 4px;
+  border-radius: 5px;
+}
+.card .wifi-info span{
+  color: #88827e;
+}
+.card .card-wifi b{
+  margin-left: auto;
+  color: #0c0c0b;
+  font-size: 12px;
+  font-weight: 600;
+}
+.card-wifi button{
+  margin-left: 10px;
+  border: none;
+  background-color: rgb(196, 192, 192);
+  color: #0c0c0b;
+  font-size: 8px;
+  font-weight: 500;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+.card .card-breakfast{
+ background-color:  rgb(246, 243, 234);
+  border: 1px solid #b8b5b2;
+  border-radius: 18px;
+  padding: 28px 22px;
+  flex: 1;
+  min-height: 290px;
+   box-shadow: 0 20px 35px rgba(105, 99, 99, 0.2);
+}
+.card .card-breakfast:hover{
+       transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+    transform:translateY(6px);
+}
+.card .card-breakfast img{
+  background-color: rgb(159, 13, 120);
+}
+.card .breakfast, .Breakfast-no{
+color: #b5176e;
+}
+.card .card-breakfast .breakfast-terrace{
+  font-size: 12px;
+line-height: 1.5;
+opacity: 0.7;
+}
+.card .card-breakfast .breakfast-text{
+  font-size: 14px;
+line-height: 1.5;
+margin-top: 19px;
+
+}
+
+.card .card-top-info{
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 30px;
+}
+
+.card .card-top-info img{
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: 8px;
+}
+.card-top-info p{
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+.card-top-info strong{
+  margin-left: auto;
+  font-family: "Fraunces", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.card h2{
+  font-size: 20px;
+  font-family: "DM Mono", sans-serif;
+  margin-bottom: 9px;
+
+}
+
+
+
+
+
+@media (max-width: 768px) {
+body{
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.container{
+  display: block;
+  height: auto;
+}
+#toggle{
+    display: none;
+  }
+  #toggle:checked ~ .sidebar{
+  height: 100vh;
+  display: block;
+}
+#toggle:checked ~ .sidebar > div {
+  display: block;
+}
+#toggle:checked ~ .sidebar .weather{ 
+  display: block;
+}
+  .sidebar {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    padding: 9px 19px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    box-sizing: border-box;
+    transition: 0.3s ease;
+  }
+  
+ 
+  .sidebar > div {
+    display: none;
+  }
+
+  .sideBtn {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-image: url(assets/icon-menu.svg);
+    position: absolute;
+    background-position: center;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    right: 20px;
+    top: 13px;
+    cursor: pointer;
+  }
+   .imgLogo {
+    width: 100px;
+    height: auto;
+    padding: 5px;
+    margin: 0;
+  }
+    .weather {
+    display: none;
+  }
+
+  .main-section{
+  width: 100%;
+  height: auto;
+  position: relative;
+  left: 0;
+  padding: 13px;
+  overflow: visible;
+ 
+  }
+  .main-top{
+    margin-bottom: 9px;
+  }
+  .main-span{
+    line-height: 1.2;
+    font-size: 30px;
+  }
+  .main-section-col{
+    display: block;
+    width: 100%;
+    
+  }
+  .main-section-right{
+    margin-top: 13px;
+    margin-left: 0;
+    display: flex;
+    gap: 9px;
+  }
+   .main-section-right button{
+    flex: 1;
+   }
+  .card{
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+    margin: 30px auto;
+
+  .card .card-arrival, .card-wifi, .card-breakfast{
+width: 100%;
+min-height: 270px;
+box-sizing: border-box;
+
+  }
+
+
+  }
+  .main-card {
+    width: 100%;
+    flex-direction: column;
+    min-width: 0;
+   
+  
+  }
+  .main-reciept{
+   order: 2;
+     width: 100%;
+  max-width: none;
+
+
+
+  }
+.welcome-back {
+  width: 100%;
+  max-width: none;
+  order: 1;
+
+}
+
+}
