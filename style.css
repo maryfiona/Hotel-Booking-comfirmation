@@ -16,6 +16,9 @@ body {
   display: flex;
   height: 100vh;
 }
+#toggle{
+    display: none;
+  }
 
 .sidebar {
   border-right-width: 2px;
